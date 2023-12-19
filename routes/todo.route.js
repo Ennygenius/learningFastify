@@ -39,8 +39,12 @@ const router = async (app, _options) => {
   });
   app.delete("/:id", async (request, reply) => {
     const { id } = request.params;
-    const todo = await Todo.findByIdAndDelete(id);
-    reply.send({ todo });
+    try {
+      const todo = await Todo.findByIdAndDelete(id);
+      reply.send({ todo });
+    } catch (error) {
+      console.log(error);
+    }
   });
 };
 
