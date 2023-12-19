@@ -7,7 +7,9 @@ const app = Fastify({
 });
 
 app.register(dbConnect);
+
 app.register(todoRoute, { prefix: "/api/v1/todo" });
+
 app.all("*", (request, reply) => {
   reply.status(404).send({
     status: 404,
